@@ -1,0 +1,36 @@
+.footerPart {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.footerLinks {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.footerLink {
+  text-decoration: none;
+}
+
+.footerLinkImg {
+  width: 50px;
+  transition: $primaryTransition;
+}
+
+.footerLinkImgMarginRight {
+  margin-right: 30px;
+}
+
+.footerLinkImg:hover {
+  scale: 103%;
+}
+
+.footerLinkItem {
+  text-decoration: none;
+}

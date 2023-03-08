@@ -1,0 +1,25 @@
+.homePageMainDiv {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+  text-align: center;
+  background-image: url("../images/mainBackground.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.allHomePageMainDiv {
+  width: 100%;
+  margin: 70px auto;
+  padding: 0 40px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: $primaryTextColor;
+}

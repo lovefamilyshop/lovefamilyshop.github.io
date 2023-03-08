@@ -1,0 +1,42 @@
+.linksPart {
+  margin: 37px 0 40px 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.linkBlock {
+  width: 60%;
+  color: $linkPrimaryTextColor;
+  height: 60px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $linkBackBackgroundColor;
+  transition: $primaryTransition;
+  text-decoration: none;
+}
+
+.linksPart > a:nth-child(n+2) {
+  margin-top: 30px;
+}
+
+.linkBlock:hover {
+  scale: 102%;
+  background-color: $linkBackHoverBackgroundColor;
+}
+
+.linkNameMarginRight {
+  margin-right: 30px;
+}
+
+.linkName, .linkPlatform {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 500;
+  font-size: 20px;
+}

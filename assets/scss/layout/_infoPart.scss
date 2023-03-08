@@ -1,0 +1,31 @@
+.infoPart {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.infoPartImg {
+  width: 10%;
+  border-radius: 50%;
+  transition: $primaryTransition;
+}
+
+.infoPartImg:hover {
+  scale: 104%;
+}
+
+.mainText {
+  margin-top: 15px;
+  font-weight: 500;
+  font-size: 25px;
+}
+
+.infoPartDescription {
+  margin-top: 13px;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 30px;
+}
