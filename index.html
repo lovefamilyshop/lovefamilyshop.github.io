@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Love Family Repairs</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <meta name="author" content="Love Family Repairs">
+    <link rel="icon" href="images/logoCircle.png">
+</head>
+<body>
+  <div class="wrapper">
+
+    <!-- Hero / Header -->
+    <header class="hero">
+      <div class="container">
+        <div class="hero-inner">
+          <img class="hero-logo" src="images/logo.png" alt="Love Family Logo">
+          <h1>Repairs & Accessories You Can Trust</h1>
+          <p>Family-owned and operated. From cracked screens to must-have accessories, we’re here to keep your devices running smoothly.</p>
+
+          <!-- Location (clickable) -->
+          <a href="https://maps.app.goo.gl/xhHHkXEXjtsGYG5g6"
+             target="_blank" class="info-item">
+            <img src="images/location.png" alt="Location Icon">
+            <span>Service Location: Woodward / Enid, Oklahoma</span>
+          </a>
+
+          <!-- Phone (clickable) -->
+          <a href="tel:+15802168694" class="info-item">
+            <img src="images/phone.png" alt="Phone Icon">
+            <span>Call Now +1 (580) 216 8694</span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Locations Section -->
+    <section class="locations">
+      <div class="container">
+        <!-- Location 1 -->
+        <div class="location-card">
+          <img src="images/storeOne.png" alt="Woodward Store">
+          <h3>
+            <span class="highlight">Our original location in Woodward - </span>
+            Fast repairs, quality accessories, and service you can trust.
+          </h3>
+
+          <!-- Map Icon clickable -->
+          <a href="https://maps.app.goo.gl/xhHHkXEXjtsGYG5g6" target="_blank">
+            <img class="icon" src="images/locationIcon.png" alt="Location Icon">
+          </a>
+          <h3 class="address">2728 Williams Ave, Woodward, OK</h3>
+          <a href="https://maps.app.goo.gl/xhHHkXEXjtsGYG5g6"
+             target="_blank" class="btn">Open in Google Maps</a>
+
+          <!-- Phone Icon clickable -->
+          <a href="tel:+15802168694">
+            <img class="iconPhone" src="images/phoneIcon.png" alt="Phone Icon">
+          </a>
+          <h3 class="phone">+1 (580) 216 8694</h3>
+          <a href="tel:+15802168694" class="btn">Call Now</a>
+        </div>
+    </section>
+
+    <div class="conatactUs">
+            <div class="conatactUs_Full">
+                <h2 class="form_text">Submit Quote Above Form</h2>
+                <div class="form__block">
+                    <form class="form" action="https://formspree.io/f/meolblwo" method="POST" id="my-form2">
+    <!-- Name -->
+    <div class="label_form">
+        <label for="user__Name" class="input__label">
+            <input maxlength="50" required autocomplete="off" name="user__Name"
+                   id="user__Name" type="text"
+                   class="input">
+            <span class="input__line"></span>
+            <span class="input__text">Your Name</span>
+        </label>
+    </div>
+
+    <!-- Phone -->
+    <div class="label_form">
+        <label for="phone" class="input__label">
+            <input type="text"
+                   maxlength="15"
+                   required
+                   autocomplete="off"
+                   name="phone"
+                   id="phone"
+                   class="input"
+                   oninput="this.value = this.value.replace(/[^0-9+]/g, '')">
+            <span class="input__line"></span>
+            <span class="input__text">Your Phone Number</span>
+        </label>
+    </div>
+
+    <!-- Device Type (new input) -->
+    <div class="label_form">
+        <label for="device__type" class="input__label">
+            <input maxlength="50" required autocomplete="off" name="device__type"
+                   id="device__type" type="text"
+                   class="input">
+            <span class="input__line"></span>
+            <span class="input__text">Device Type</span>
+        </label>
+    </div>
+
+    <!-- Message / Note -->
+    <label for="user__message" class="input__label input__label2">
+        <textarea maxlength="700" required autocomplete="off" name="user__message"
+                  id="user__message"
+                  class="input input2" cols="50" rows="10"></textarea>
+        <span class="input__line"></span>
+        <span class="input__text">Describe The Issue / Notes</span>
+    </label>
+
+    <button type="submit" class="form_button_main">Submit</button>
+</form>
+
+                </div>
+            </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-left">
+          <img src="images/logoCircle.png" alt="Circle Logo">
+          <span>All Rights Reserved ©</span>
+        </div>
+        <div class="footer-right">
+          <div class="social-icons">
+            <a href="mailto:lovefamllc@gmail.com"><img src="images/email.png" alt="Email"></a>
+            <a href="tel:+15802168694"><img src="images/phone.png" alt="Phone"></a>
+            <a href="https://maps.app.goo.gl/xhHHkXEXjtsGYG5g6" target="_blank"><img src="images/location.png" alt="Location"></a>
+            <a href="https://www.facebook.com/Lovehobbyandrepair" target="_blank"><img src="images/facebook.png" alt="Facebook"></a>
+          </div>
+          <p>Have questions or need a repair? Call or email us anytime. Stay connected and follow us on social media for updates and deals.</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
