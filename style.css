@@ -507,11 +507,4 @@ img {
   text-align: center;
   cursor: pointer;
 }
-
 }
-
-a[href^="tel"] {
-  color: #222 !important;
-  text-decoration: none;
-}
-
