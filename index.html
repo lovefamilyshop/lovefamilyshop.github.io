@@ -4,153 +4,630 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Love Family Repairs</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-    <meta name="author" content="Love Family Repairs">
-    <meta name="format-detection" content="telephone=no">
-    <link rel="icon" href="images/logoCircle.png">
+  <meta name="author" content="Love Family Repairs">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="icon" href="images/logoCircle.png">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red: #ba0b42;
+      --red-dark: #8a0830;
+      --red-light: #f5e6eb;
+      --red-glow: rgba(186,11,66,0.12);
+      --cream: #fdf8f5;
+      --light: #fff;
+      --light-gray: #f4f0ec;
+      --border: rgba(186,11,66,0.15);
+      --border-gray: #e8e2dc;
+      --text-dark: #1a1010;
+      --text-mid: #4a3840;
+      --text-muted: #8a7070;
+      --charcoal: #1e1414;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text-dark);
+      overflow-x: hidden;
+    }
+    h1,h2,h3 { margin: 0; }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: var(--light);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 72px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* soft radial blush behind content */
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 800px; height: 800px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(186,11,66,0.07) 0%, transparent 70%);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative; z-index: 1;
+      display: flex; flex-direction: column; align-items: center; gap: 0;
+      max-width: 760px; width: 100%;
+    }
+
+    .hero-logo-wrap {
+      margin-bottom: 36px;
+    }
+    .hero-logo-wrap img {
+      width: 160px;
+      margin: 0 auto;
+      border-radius: 32px;
+      filter: drop-shadow(0 8px 32px rgba(186,11,66,0.2));
+    }
+
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--red);
+      background: var(--red-light);
+      padding: 6px 16px; border-radius: 50px;
+      margin-bottom: 24px;
+    }
+
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3.6rem, 8vw, 7rem);
+      line-height: 0.92; letter-spacing: 0.02em;
+      color: var(--text-dark);
+      margin-bottom: 24px;
+    }
+    .hero-title span { color: var(--red); }
+
+    .hero-body {
+      font-size: 1.05rem; font-weight: 300; color: var(--text-muted); line-height: 1.7;
+      max-width: 520px; margin: 0 auto 40px;
+    }
+
+    .hero-contacts {
+      display: flex; flex-direction: row; flex-wrap: wrap;
+      align-items: center; justify-content: center; gap: 12px;
+      margin-bottom: 40px;
+    }
+    .hero-contact-link {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 0.88rem; font-weight: 500; color: var(--text-mid);
+      background: var(--light-gray);
+      border: 1px solid var(--border-gray);
+      padding: 10px 18px; border-radius: 50px;
+      transition: background 0.25s, border-color 0.25s, color 0.25s;
+    }
+    .hero-contact-link:hover {
+      background: var(--red-light); border-color: var(--red); color: var(--red);
+    }
+    .hero-contact-link svg { flex-shrink: 0; }
+
+    .hero-btns {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 12px;
+    }
+
+    /* ── BUTTONS (global) ── */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--red); color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.88rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 14px 32px; border-radius: 50px;
+      transition: background 0.25s;
+    }
+    .btn-primary:hover { background: var(--red-dark); }
+
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 2px solid var(--red); color: var(--red);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.88rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 12px 30px; border-radius: 50px;
+      transition: background 0.25s, color 0.25s;
+    }
+    .btn-outline:hover { background: var(--red); color: #fff; }
+
+    /* ── STATS BAND ── */
+    .stats-band {
+      background: var(--red);
+      display: grid; grid-template-columns: repeat(3, 1fr);
+    }
+    .stat-item {
+      padding: 32px 20px; text-align: center;
+      border-right: 1px solid rgba(255,255,255,0.18);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3rem; line-height: 1; color: #fff; display: block;
+    }
+    .stat-label {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(255,255,255,0.7); margin-top: 4px; display: block;
+    }
+
+    /* ── SECTION SHARED ── */
+    .section-label {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--red);
+      background: var(--red-light);
+      padding: 5px 14px; border-radius: 50px;
+      margin-bottom: 18px;
+    }
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.6rem, 4vw, 3.8rem);
+      line-height: 0.95; letter-spacing: 0.02em;
+      color: var(--text-dark);
+      margin-bottom: 16px;
+    }
+    .section-subtitle {
+      font-size: 0.95rem; color: var(--text-muted); line-height: 1.65;
+    }
+
+    /* ── LOCATION SECTION ── */
+    .location-section {
+      background: var(--cream);
+      padding: 72px 24px;
+      text-align: center;
+    }
+    .location-section .section-inner {
+      max-width: var(--section-max, 1100px); margin: 0 auto;
+    }
+    .location-section .section-header {
+      margin-bottom: 44px;
+      display: flex; flex-direction: column; align-items: center;
+    }
+
+    .location-card {
+      background: var(--light);
+      border: 1px solid var(--border-gray);
+      border-radius: 24px;
+      overflow: hidden;
+      display: grid; grid-template-columns: 1fr 1fr;
+      text-align: left;
+      box-shadow: 0 4px 40px rgba(0,0,0,0.06);
+    }
+
+    .location-img-wrap {
+      position: relative; overflow: hidden; min-height: 420px;
+    }
+    .location-img-wrap img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.6s ease;
+      filter: brightness(0.88);
+    }
+    .location-card:hover .location-img-wrap img { transform: scale(1.04); }
+    .location-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(186,11,66,0.25) 0%, transparent 50%);
+    }
+
+    .location-info {
+      padding: 52px 44px;
+      display: flex; flex-direction: column; justify-content: center; gap: 20px;
+    }
+    .location-tag {
+      display: inline-block; background: var(--red); color: #fff;
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 5px 14px; border-radius: 50px; width: fit-content;
+    }
+    .location-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.8rem; line-height: 0.95; letter-spacing: 0.02em; color: var(--text-dark);
+    }
+    .location-desc {
+      font-size: 0.9rem; color: var(--text-muted); line-height: 1.65; max-width: 320px;
+    }
+    .location-details { display: flex; flex-direction: column; gap: 20px; }
+    .detail-row {
+      display: flex; align-items: flex-start; gap: 14px; font-size: 1rem;
+    }
+    .detail-row .d-icon-wrap {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: var(--red-light); flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 1px;
+    }
+    .detail-row .d-icon-wrap svg { width: 20px; height: 20px; }
+    .d-label {
+      font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--text-muted); margin-bottom: 4px; font-weight: 600;
+    }
+    .d-val { color: var(--text-dark); font-weight: 600; font-size: 1rem; }
+    .d-note { color: var(--red); font-size: 0.88rem; margin-top: 3px; font-weight: 500; }
+
+    .hours-badge {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: var(--light-gray); border: 1px solid var(--border-gray);
+      border-radius: 50px; padding: 13px 22px;
+      font-size: 0.95rem; color: var(--text-mid); width: fit-content;
+    }
+    .hours-badge svg { width: 20px; height: 20px; flex-shrink: 0; }
+    .hours-badge strong { color: var(--text-dark); }
+
+    .location-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    /* ── FORM SECTION ── */
+    .form-section {
+      background: var(--light);
+      border-top: 1px solid var(--border-gray);
+      padding: 72px 24px;
+      text-align: center;
+    }
+    .form-section-inner {
+      max-width: var(--section-max, 1100px); margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1.2fr; gap: 72px; align-items: start;
+      text-align: left;
+    }
+
+    .form-left { padding-top: 8px; }
+    .form-left .section-subtitle { margin-bottom: 32px; max-width: 340px; }
+
+    .form-perks { display: flex; flex-direction: column; gap: 12px; }
+    .perk-row {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 0.85rem; color: var(--text-mid);
+    }
+    .perk-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--red); flex-shrink: 0;
+    }
+
+    .form-card {
+      background: var(--cream);
+      border: 1px solid var(--border-gray);
+      border-radius: 24px; padding: 44px;
+    }
+    .form-card form { display: flex; flex-direction: column; gap: 20px; }
+
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field label {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .field input, .field textarea {
+      background: var(--light);
+      border: 1.5px solid var(--border-gray);
+      border-radius: 12px; color: var(--text-dark);
+      font-family: 'DM Sans', sans-serif; font-size: 0.92rem;
+      padding: 13px 16px; outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s; width: 100%;
+    }
+    .field input::placeholder, .field textarea::placeholder { color: #cbbfba; }
+    .field input:focus, .field textarea:focus {
+      border-color: var(--red); box-shadow: 0 0 0 3px var(--red-glow);
+    }
+    .field textarea { resize: vertical; min-height: 120px; }
+
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    .form-submit {
+      background: var(--red); color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.88rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      border: none; border-radius: 50px;
+      padding: 16px 32px; cursor: pointer;
+      transition: background 0.25s; margin-top: 4px;
+      width: 100%;
+    }
+    .form-submit:hover { background: var(--red-dark); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--charcoal);
+      color: rgba(255,255,255,0.85);
+      padding: 72px 48px;
+    }
+    .footer-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: auto 1fr auto; gap: 24px; align-items: center;
+      padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer-brand { display: flex; align-items: center; gap: 14px; }
+    .footer-brand img { height: 46px; border-radius: 12px; }
+    .footer-brand-text {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem; letter-spacing: 0.06em; line-height: 1.2;
+      color: #fff;
+    }
+    .footer-middle { text-align: center; }
+    .footer-middle p {
+      color: rgba(255,255,255,0.45); font-size: 0.82rem; line-height: 1.7;
+      max-width: 300px; margin: 0 auto;
+    }
+    .footer-socials { display: flex; gap: 10px; justify-content: flex-end; }
+    .social-icon {
+      width: 40px; height: 40px; border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.12);
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.25s, border-color 0.25s;
+    }
+    .social-icon:hover { background: var(--red); border-color: var(--red); }
+    .social-icon:hover svg { stroke: #fff; opacity: 1; }
+    .social-icon svg { transition: stroke 0.25s; }
+    .footer-bottom {
+      max-width: 1100px; margin: 14px auto 0;
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 0.72rem; color: rgba(255,255,255,0.25);
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVE ── */
+
+    /* Tablet */
+    @media (max-width: 1024px) {
+      :root { --section-max: 760px; }
+      .location-card { grid-template-columns: 1fr; }
+      .location-img-wrap { min-height: 300px; }
+      .location-info { padding: 40px 36px; text-align: center; align-items: center; }
+      .location-name { text-align: center; }
+      .location-desc { text-align: center; max-width: 100%; }
+      .location-details { text-align: left; width: fit-content; margin: 0 auto; }
+      .detail-row { justify-content: inline-flex; }
+      .location-actions { justify-content: center; }
+      .hours-badge { align-self: center; }
+      .location-tag { margin: 0 auto; }
+      .form-section-inner { grid-template-columns: 1fr; gap: 44px; text-align: center; }
+      .form-left { display: flex; flex-direction: column; align-items: center; }
+      .form-left .section-subtitle { text-align: center; max-width: 100%; }
+      .form-perks { align-items: center; }
+      .form-card { padding: 36px 32px; }
+      .field-row { grid-template-columns: 1fr 1fr; }
+      footer { padding: 72px 32px; }
+      .footer-inner { grid-template-columns: auto 1fr auto; }
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) and (min-width: 501px) {
+  :root { --section-max: 80%; }
+}
+    @media (max-width: 768px) {
+      .hero { padding: 60px 20px; }
+      .hero-logo-wrap img { width: 130px; }
+      .hero-title { font-size: clamp(2.8rem, 9vw, 4rem); }
+      .hero-body { font-size: 0.95rem; }
+      .hero-contacts { flex-direction: column; align-items: center; width: 100%; }
+      .hero-contact-link { width: 100%; max-width: 320px; justify-content: center; }
+      .hero-btns { flex-direction: column; align-items: center; width: 100%; }
+      .hero-btns .btn-primary, .hero-btns .btn-outline { width: 100%; max-width: 320px; justify-content: center; }
+
+      .stats-band { grid-template-columns: 1fr; }
+      .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.12); padding: 24px 20px; }
+      .stat-item:last-child { border-bottom: none; }
+
+      .location-section { padding: 56px 20px; }
+      .location-img-wrap { min-height: 240px; }
+      .location-info { padding: 32px 24px; gap: 16px; }
+      .location-name { font-size: 2.2rem; }
+      .hours-badge { font-size: 0.85rem; padding: 11px 18px; flex-wrap: wrap; justify-content: center; }
+      .location-actions { flex-direction: column; align-items: center; width: 100%; }
+      .location-actions .btn-primary, .location-actions .btn-outline { width: 100%; max-width: 300px; justify-content: center; }
+
+      .form-section { padding: 56px 20px; }
+      .form-card { padding: 28px 20px; }
+      .field-row { grid-template-columns: 1fr; }
+
+      .section-title { font-size: 2.2rem; }
+
+      footer { padding: 56px 20px; }
+      .footer-inner { grid-template-columns: 1fr; text-align: center; gap: 20px; padding-bottom: 20px; }
+      .footer-brand { justify-content: center; }
+      .footer-socials { justify-content: center; }
+      .footer-bottom { flex-direction: column; gap: 4px; text-align: center; font-size: 0.68rem; }
+    }
+
+    /* Small phones */
+    @media (max-width: 400px) {
+      .hero-title { font-size: 2.5rem; }
+      .hero-logo-wrap img { width: 110px; border-radius: 24px; }
+      .btn-primary, .btn-outline { font-size: 0.82rem; }
+      .hero-contact-link { font-size: 0.82rem; }
+    }
+  </style>
 </head>
 <body>
-  <div class="wrapper">
 
-    <!-- Hero / Header -->
-    <header class="hero">
-      <div class="container">
-        <div class="hero-inner">
-          <img class="hero-logo" src="images/logo.png" alt="Love Family Logo">
-          <h1>Repairs & Accessories You Can Trust</h1>
-          <p>Family-owned and operated. From cracked screens to must-have accessories, we’re here to keep your devices running smoothly.</p>
 
-          <!-- Location (clickable) -->
-          <a href="https://maps.app.goo.gl/xhHHkXEXjtsGYG5g6"
-             target="_blank" class="info-item">
-            <img src="images/location.png" alt="Location Icon">
-            <span>Service Location: Woodward / Enid, Oklahoma</span>
-          </a>
 
-          <!-- Phone (clickable) -->
-          <a href="tel:+15802168694" class="info-item">
-            <img src="images/phone.png" alt="Phone Icon">
-            <span>Call Now +1 (580) 216 8694</span>
-          </a>
-        </div>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner reveal">
+      <div class="hero-logo-wrap">
+        <img src="images/logo.png" alt="Love Family Repairs Logo">
       </div>
-    </header>
-
-    <!-- Locations Section -->
-    <section class="locations">
-      <div class="container">
-        <!-- Location 1 -->
-        <div class="location-card">
-          <img src="images/storeOne.png" alt="Woodward Store">
-          <h3>
-            <span class="highlight">Woodward Location - </span>
-            Delivering Fast & Store Repairs, quality accessories, and service you can trust.
-          </h3>
-
-          <!-- Map Icon clickable -->
-          <a href="https://maps.app.goo.gl/xhHHkXEXjtsGYG5g6" target="_blank">
-            <img class="icon" src="images/locationIcon.png" alt="Location Icon">
-          </a>
-          <h3 class="address">2728 Williams Ave, Woodward, OK</h3>
-          <a href="https://maps.app.goo.gl/xhHHkXEXjtsGYG5g6"
-             target="_blank" class="btn">Open in Google Maps</a>
-
-          <!-- Phone Icon clickable -->
-          <a href="tel:+15802168694">
-            <img class="iconPhone" src="images/phoneIcon.png" alt="Phone Icon">
-          </a>
-          <h3 class="phone"><span class="highlight">The Main Number:</span><br>+1 (580) 216 8694</h3>
-          <h3 class="phone"><span class="highlight">Call To This Number Only For Enid's Mobile Services:</span><br>+1 (580) 377 7665</h3>
-          <a href="tel:+15802168694" class="btn">Call Now</a>
-          <!-- Business Hours -->
-<div class="workingHours">
-  <h4 class="workingHoursText">
-    <span class="highlight">We’re Open</span>
-    <br>
-    10am - 6pm <br> Monday - Friday <br> 12pm - 6pm Saturdays
-  </h4>
-</div>
-        </div>
-    </section>
-
-    <div class="conatactUs" id="quote">
-            <div class="conatactUs_Full">
-                <h2 class="form_text">Submit Quote Above Form</h2>
-                <div class="form__block">
-                    <form class="form" action="https://formspree.io/f/meolblwo" method="POST" id="my-form2">
-    <!-- Name -->
-    <div class="label_form">
-        <label for="user__Name" class="input__label">
-            <input maxlength="50" required autocomplete="off" name="user__Name"
-                   id="user__Name" type="text"
-                   class="input">
-            <span class="input__line"></span>
-            <span class="input__text">Your Name</span>
-        </label>
-    </div>
-
-    <!-- Phone -->
-    <div class="label_form">
-        <label for="phone" class="input__label">
-            <input type="text"
-                   maxlength="15"
-                   required
-                   autocomplete="off"
-                   name="phone"
-                   id="phone"
-                   class="input"
-                   oninput="this.value = this.value.replace(/[^0-9+]/g, '')">
-            <span class="input__line"></span>
-            <span class="input__text">Your Phone Number</span>
-        </label>
-    </div>
-
-    <!-- Device Type (new input) -->
-    <div class="label_form">
-        <label for="device__type" class="input__label">
-            <input maxlength="50" required autocomplete="off" name="device__type"
-                   id="device__type" type="text"
-                   class="input">
-            <span class="input__line"></span>
-            <span class="input__text">Device Type</span>
-        </label>
-    </div>
-
-    <!-- Message / Note -->
-    <label for="user__message" class="input__label input__label2">
-        <textarea maxlength="700" required autocomplete="off" name="user__message"
-                  id="user__message"
-                  class="input input2" cols="50" rows="10"></textarea>
-        <span class="input__line"></span>
-        <span class="input__text">Describe The Issue / Notes</span>
-    </label>
-
-    <button type="submit" class="form_button_main">Submit</button>
-</form>
-
-                </div>
-            </div>
-    </div>
-    
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="container">
-        <div class="footer-left">
-          <img src="images/logoCircle.png" alt="Circle Logo">
-          <span>All Rights Reserved ©</span>
-        </div>
-        <div class="footer-right">
-          <div class="social-icons">
-            <a href="mailto:lovefamllc@gmail.com"><img src="images/email.png" alt="Email"></a>
-            <a href="tel:+15802168694"><img src="images/phone.png" alt="Phone"></a>
-            <a href="https://maps.app.goo.gl/xhHHkXEXjtsGYG5g6" target="_blank"><img src="images/location.png" alt="Location"></a>
-            <a href="https://www.facebook.com/Lovehobbyandrepair" target="_blank"><img src="images/facebook.png" alt="Facebook"></a>
-          </div>
-          <p>Have questions or need a repair? Call or email us anytime. Stay connected and follow us on social media for updates and deals.</p>
-        </div>
+      <div class="hero-eyebrow">Family-Owned &amp; Operated · Oklahoma</div>
+      <h1 class="hero-title">
+        Repairs &amp; Accessories<br><span>You Can Trust.</span>
+      </h1>
+      <p class="hero-body">From cracked screens to must-have accessories - we keep your devices running smoothly. Serving Woodward &amp; Enid, Oklahoma.</p>
+      <div class="hero-contacts">
+        <a href="https://maps.app.goo.gl/xhHHkXEXjtsGYG5g6" target="_blank" class="hero-contact-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          Woodward / Enid, Oklahoma
+        </a>
+        <a href="tel:+15802168694" class="hero-contact-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.02 2.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+          +1 (580) 216 8694
+        </a>
       </div>
-    </footer>
+      <div class="hero-btns">
+        <a href="#quote" class="btn-primary">Get a Free Quote →</a>
+        <a href="tel:+15802168694" class="btn-outline">Call Now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BAND -->
+  <div class="stats-band">
+    <div class="stat-item">
+      <span class="stat-num">2</span>
+      <span class="stat-label">Service Locations</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">Same Day</span>
+      <span class="stat-label">Repair Turnaround</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">100%</span>
+      <span class="stat-label">Family Operated</span>
+    </div>
   </div>
+
+  <!-- LOCATION -->
+  <section class="location-section reveal" id="location">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-label">Where To Find Us</div>
+        <h2 class="section-title">Our Location</h2>
+        <p class="section-subtitle">Drop in or call ahead - we're ready to help.</p>
+      </div>
+
+      <div class="location-card">
+        <div class="location-img-wrap">
+          <img src="images/storeOne.png" alt="Woodward Store">
+          <div class="location-overlay"></div>
+        </div>
+        <div class="location-info">
+          <div class="location-tag">Woodward, OK</div>
+          <h3 class="location-name">Woodward<br>Location</h3>
+          <p class="location-desc">Fast repairs, quality accessories, and service you can trust. Also offering mobile services to the Enid area.</p>
+
+          <div class="location-details">
+            <div class="detail-row">
+              <div class="d-icon-wrap">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#ba0b42" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+              </div>
+              <div>
+                <div class="d-label">Address</div>
+                <div class="d-val">2728 Williams Ave, Woodward, OK</div>
+              </div>
+            </div>
+            <div class="detail-row">
+              <div class="d-icon-wrap">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#ba0b42" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="3"/><circle cx="12" cy="17" r="1" fill="#ba0b42"/></svg>
+              </div>
+              <div>
+                <div class="d-label">Main Number</div>
+                <div class="d-val">+1 (580) 216 8694</div>
+                <div class="d-note">Enid Mobile Only: +1 (580) 377 7665</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hours-badge">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#ba0b42" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span><strong>Mon–Fri</strong>&nbsp;10am–6pm &nbsp;·&nbsp; <strong>Sat</strong>&nbsp;12pm–6pm</span>
+          </div>
+
+          <div class="location-actions">
+            <a href="https://maps.app.goo.gl/xhHHkXEXjtsGYG5g6" target="_blank" class="btn-primary">Open in Maps →</a>
+            <a href="tel:+15802168694" class="btn-outline">Call Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORM -->
+  <section class="form-section" id="quote">
+    <div class="form-section-inner reveal">
+      <div class="form-left">
+        <div class="section-label">Get Started</div>
+        <h2 class="section-title">Request<br>a Quote</h2>
+        <p class="section-subtitle">Describe your device issue and we'll get back to you fast with an honest, no-surprises estimate.</p>
+        <div class="form-perks">
+          <div class="perk-row"><div class="perk-dot"></div><span>Quick turnaround on responses</span></div>
+          <div class="perk-row"><div class="perk-dot"></div><span>Transparent, upfront pricing</span></div>
+          <div class="perk-row"><div class="perk-dot"></div><span>Phones, tablets, and more</span></div>
+          <div class="perk-row"><div class="perk-dot"></div><span>Mobile service available for Enid</span></div>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <form action="https://formspree.io/f/meolblwo" method="POST" id="my-form2">
+          <div class="field-row">
+            <div class="field">
+              <label for="user__Name">Your Name</label>
+              <input maxlength="50" required autocomplete="off" name="user__Name" id="user__Name" type="text" placeholder="Jane Smith">
+            </div>
+            <div class="field">
+              <label for="phone">Phone Number</label>
+              <input type="text" maxlength="15" required autocomplete="off" name="phone" id="phone" placeholder="+1 (580) 000 0000" oninput="this.value = this.value.replace(/[^0-9+]/g, '')">
+            </div>
+          </div>
+          <div class="field">
+            <label for="device__type">Device Type</label>
+            <input maxlength="50" required autocomplete="off" name="device__type" id="device__type" type="text" placeholder="e.g. iPhone 14 Pro, Samsung Galaxy S22">
+          </div>
+          <div class="field">
+            <label for="user__message">Describe the Issue</label>
+            <textarea maxlength="700" required autocomplete="off" name="user__message" id="user__message" placeholder="Tell us what's wrong and any other notes..."></textarea>
+          </div>
+          <button type="submit" class="form-submit">Submit Quote Request →</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="images/logoCircle.png" alt="Love Family Repairs Logo">
+        <div class="footer-brand-text">Love Family<br>Repairs</div>
+      </div>
+      <div class="footer-middle">
+        <p>Have questions or need a repair? Call or email us anytime. Follow us on social media for updates and deals.</p>
+      </div>
+      <div class="footer-socials">
+        <a href="mailto:lovefamllc@gmail.com" class="social-icon" aria-label="Email">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.65)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 01-2.06 0L2 7"/></svg>
+        </a>
+        <a href="tel:+15802168694" class="social-icon" aria-label="Phone">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.65)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.02 2.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+        </a>
+        <a href="https://maps.app.goo.gl/xhHHkXEXjtsGYG5g6" target="_blank" class="social-icon" aria-label="Location">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.65)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        </a>
+        <a href="https://www.facebook.com/Lovehobbyandrepair" target="_blank" class="social-icon" aria-label="Facebook">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.65)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>Love Family Repairs LLC - All Rights Reserved ©</span>
+      <span>Woodward &amp; Enid, Oklahoma</span>
+    </div>
+  </footer>
+
+  <script>
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  </script>
 </body>
 </html>
